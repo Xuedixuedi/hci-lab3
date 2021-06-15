@@ -46,6 +46,9 @@ types = [i for i in types if i is not np.nan]
 types = np.array(types)
 
 app.layout = html.Div([
+    html.H1("HCI-LAB3 Assignment"),
+    html.P("Copyright by 1752985 Xuedi Liu", style={'color': 'gray'}),
+    html.H2("Scatter chart of APPS Installs and Reviews"),
     html.Div([
         dcc.Dropdown(
             id="categories",
@@ -53,7 +56,6 @@ app.layout = html.Div([
             value='Choose a category'
         )
     ]),
-
     html.Div([
         dcc.RadioItems(
             id="types",
@@ -64,6 +66,13 @@ app.layout = html.Div([
     html.Div([
         # scatter chart
         dcc.Graph(id='scatter-chart', animate=True)
+    ]),
+    html.Div(style={'height': '100px'}),
+
+    html.H2("Pie chart of APPS Content Rating in all ratings"),
+    html.Div([
+        # pie chart
+        dcc.Graph(id='pie-chart', animate=True)
     ]),
     # 评分Slider
     html.Div([
@@ -76,16 +85,15 @@ app.layout = html.Div([
             marks={str(rate): str(rate) for rate in df['Rating'].unique()}
         )
     ]),
-    html.Div([
-        # pie chart
-        dcc.Graph(id='pie-chart', animate=True)
-    ]),
+    html.Div(style={'height': '100px'}),
+
+    html.H2("Line chart of APPS Android version"),
     html.Div([
         # bar chart
         dcc.Graph(id='bar-chart', animate=True)
     ])
 
-])
+], style={'margin': '50px'})
 
 
 # scatter chart
